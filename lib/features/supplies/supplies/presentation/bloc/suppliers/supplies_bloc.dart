@@ -45,6 +45,8 @@ class SuppliesBloc extends Bloc<SuppliesEvent, SuppliesState> {
         emit(SuppliesFetchingFailedState(message: failure.message));
       },
       (supplies) {
+        supplies.retainWhere((element) => element.siteId == event.siteId);
+
         emit(
           SuppliesFetchingDoneState(supplies: supplies),
         );
