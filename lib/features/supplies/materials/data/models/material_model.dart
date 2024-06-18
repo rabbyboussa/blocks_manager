@@ -7,6 +7,7 @@ part 'material_model.g.dart';
 class MaterialModel extends MaterialEntity {
   const MaterialModel({
     required int id,
+    required int siteId,
     required String designation,
     String? description,
     required String measurementUnit,
@@ -14,6 +15,7 @@ class MaterialModel extends MaterialEntity {
     String? imagePath,
   }) : super(
           id: id,
+          siteId: siteId,
           designation: designation,
           description: description,
           measurementUnit: measurementUnit,

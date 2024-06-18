@@ -34,6 +34,7 @@ class SupplyCreationBloc
     emit(const SupplyCreationLoadingState());
 
     final result = await _createSupplyUsecase(CreateSupplyUsecaseParams(
+      siteId: event.siteId,
       reference: event.reference,
       supplierId: event.supplierId,
       creationDate: event.creationDate,
@@ -65,6 +66,7 @@ class SupplyCreationBloc
         },
         (materialsFetched) async {
           materials = materialsFetched;
+          materials.retainWhere((element) => element.siteId == event.siteId);
           await _fetchSuppliersUsecase().then(
             (suppliersResult) => suppliersResult.fold(
               (failure) {
@@ -73,6 +75,7 @@ class SupplyCreationBloc
               },
               (suppliersFetched) async {
                 suppliers = suppliersFetched;
+                suppliers.retainWhere((element) => element.siteId == event.siteId);
               },
             ),
           );

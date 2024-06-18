@@ -10,7 +10,7 @@ part of 'authentication_data_source.dart';
 
 class _AuthenticationDataSource implements AuthenticationDataSource {
   _AuthenticationDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;
@@ -42,6 +42,8 @@ class _AuthenticationDataSource implements AuthenticationDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
+
+    print(_result);
 
     AccountModel? account;
     if (_result.data!['statusCode'] == 200) {

@@ -5,6 +5,7 @@ import 'package:blocks/features/administration/accounts/domain/entities/role_ent
 import 'package:blocks/features/administration/accounts/presentation/bloc/accounts/accounts_bloc.dart';
 import 'package:blocks/features/administration/accounts/presentation/bloc/edit_account/edit_account_bloc.dart';
 import 'package:blocks/features/administration/employees/domain/entities/employee_entity.dart';
+import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,6 +42,7 @@ class _EditAccountDialogState extends State<EditAccountDialog> {
   void initState() {
     _employees = List.from(context.read<AccountsBloc>().state.employees!);
     _roles = List.from(context.read<AccountsBloc>().state.roles!);
+    _roles.removeWhere((element) => element.name == 'Superadmin');
 
     if (widget.modification) {
       _account = widget.account;
@@ -255,6 +257,7 @@ class _EditAccountDialogState extends State<EditAccountDialog> {
                               );
                             } else {
                               _account = AccountEntity(
+                                siteId: context.read<AuthenticationBloc>().state.account!.siteId!,
                                 type: 'Interne',
                                 employeeId: _employees
                                     .firstWhere((employee) =>

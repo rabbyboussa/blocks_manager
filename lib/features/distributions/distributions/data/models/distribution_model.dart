@@ -7,12 +7,14 @@ part 'distribution_model.g.dart';
 class DistributionModel extends DistributionEntity {
   const DistributionModel({
     required int id,
+    required int siteId,
     required String reference,
     required String client,
     required String creationDate,
     required String operator,
   }) : super(
           id: id,
+          siteId: siteId,
           reference: reference,
           client: client,
           creationDate: creationDate,

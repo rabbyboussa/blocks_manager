@@ -42,8 +42,10 @@ class EditSupplierBloc extends Bloc<EditSupplierEvent, EditSupplierState> {
         },
       );
     } else {
-      final result = await _addSupplierUsecase(
-          AddSupplierUsecaseParams(supplier: event.supplier));
+      final result = await _addSupplierUsecase(AddSupplierUsecaseParams(
+        supplier: event.supplier,
+        siteId: event.siteId,
+      ));
 
       result.fold(
         (failure) {

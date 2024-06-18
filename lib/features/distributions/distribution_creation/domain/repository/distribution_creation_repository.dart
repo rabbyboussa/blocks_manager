@@ -7,6 +7,7 @@ abstract class DistributionCreationRepository {
 
   ResultFuture<void> createDistribution({
     required String reference,
+    required int siteId,
     required int clientId,
     required String creationDate,
     required int accountId,

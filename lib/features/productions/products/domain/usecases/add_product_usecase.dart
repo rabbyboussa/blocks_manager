@@ -13,16 +13,24 @@ class AddProductUsecase
 
   @override
   ResultFuture<ProductEntity> call(AddProductUsecaseParams params) async =>
-      _repository.addProduct(product: params.product);
+      _repository.addProduct(
+        product: params.product,
+        siteId: params.siteId,
+      );
 }
 
 class AddProductUsecaseParams extends Equatable {
   const AddProductUsecaseParams({
     required this.product,
+    required this.siteId,
   });
 
   final ProductEntity product;
+  final int siteId;
 
   @override
-  List<Object?> get props => [product];
+  List<Object?> get props => [
+        product,
+        siteId,
+      ];
 }

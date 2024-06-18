@@ -10,7 +10,7 @@ part of 'materials_data_source.dart';
 
 class _MaterialsDataSource implements MaterialsDataSource {
   _MaterialsDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;
@@ -41,6 +41,9 @@ class _MaterialsDataSource implements MaterialsDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
+
+    print(_result);
+
     List<MaterialModel> value = _result.data!['data']
         .map<MaterialModel>(
             (dynamic i) => MaterialModel.fromJson(i as Map<String, dynamic>))

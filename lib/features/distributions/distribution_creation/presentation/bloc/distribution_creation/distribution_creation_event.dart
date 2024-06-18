@@ -12,6 +12,7 @@ final class FetchDataEvent extends DistributionCreationEvent {}
 final class CreateDistributionEvent extends DistributionCreationEvent {
   const CreateDistributionEvent({
     required this.reference,
+    required this.siteId,
     required this.clientId,
     required this.creationDate,
     required this.accountId,
@@ -20,6 +21,7 @@ final class CreateDistributionEvent extends DistributionCreationEvent {
   });
 
   final String reference;
+  final int siteId;
   final int clientId;
   final String creationDate;
   final int accountId;
@@ -29,6 +31,7 @@ final class CreateDistributionEvent extends DistributionCreationEvent {
   @override
   List<Object> get props => [
         reference,
+        siteId,
         clientId,
         creationDate,
         accountId,

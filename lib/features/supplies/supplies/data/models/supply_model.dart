@@ -7,12 +7,14 @@ part 'supply_model.g.dart';
 class SupplyModel extends SupplyEntity {
   const SupplyModel({
     required int id,
+    required int siteId,
     required String reference,
     required String supplier,
     required String creationDate,
     required String operator,
   }) : super(
           id: id,
+          siteId: siteId,
           reference: reference,
           supplier: supplier,
           creationDate: creationDate,

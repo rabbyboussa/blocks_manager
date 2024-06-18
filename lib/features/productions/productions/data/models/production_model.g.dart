@@ -9,6 +9,7 @@ part of 'production_model.dart';
 ProductionModel _$ProductionModelFromJson(Map<String, dynamic> json) =>
     ProductionModel(
       id: json['id'],
+      siteId: json['siteId'],
       reference: json['reference'],
       creationDate: json['creationDate'],
       operator: json['operator'],
@@ -17,6 +18,7 @@ ProductionModel _$ProductionModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$ProductionModelToJson(ProductionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'siteId': instance.siteId,
       'reference': instance.reference,
       'creationDate': instance.creationDate,
       'operator': instance.operator,

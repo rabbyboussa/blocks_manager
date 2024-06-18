@@ -7,6 +7,7 @@ part 'employee_model.g.dart';
 class EmployeeModel extends EmployeeEntity {
   const EmployeeModel({
     required int id,
+    required int siteId,
     required String firstname,
     required String lastname,
     required int genre,
@@ -23,6 +24,7 @@ class EmployeeModel extends EmployeeEntity {
     String? imagePath,
   }) : super(
           id: id,
+          siteId: siteId,
           firstname: firstname,
           lastname: lastname,
           genre: genre,

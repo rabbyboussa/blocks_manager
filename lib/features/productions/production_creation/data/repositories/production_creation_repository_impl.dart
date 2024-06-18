@@ -21,20 +21,20 @@ class ProductionCreationRepositoryImpl implements ProductionCreationRepository {
     required String reference,
     required String creationDate,
     required int accountId,
+    required int siteId,
     required List<ProductEntity> products,
     required List<MaterialEntity> materials,
     required List<ProductionLineEntity> productionlines,
     required List<MaterialUsedLineEntity> materialsUsedLines,
   }) async {
     try {
-      print(materialsUsedLines);
-      print(productionlines);
       final httpResponse = await _dataSource.createProduction(
         body: {
           'generalInfo': {
             'reference': reference,
             'creationDate': creationDate,
             'accountId': accountId,
+            'siteId': siteId,
           },
           'materialsUsedLines': materialsUsedLines
               .map((e) => {

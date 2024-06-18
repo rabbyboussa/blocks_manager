@@ -17,6 +17,7 @@ class CreateDistributionUsecase
   ResultFutureVoid call(CreateDistributionUsecaseParams params) async =>
       _repository.createDistribution(
         reference: params.reference,
+        siteId: params.siteId,
         clientId: params.clientId,
         creationDate: params.creationDate,
         accountId: params.accountId,
@@ -28,6 +29,7 @@ class CreateDistributionUsecase
 class CreateDistributionUsecaseParams extends Equatable {
   const CreateDistributionUsecaseParams({
     required this.reference,
+    required this.siteId,
     required this.clientId,
     required this.creationDate,
     required this.accountId,
@@ -36,6 +38,7 @@ class CreateDistributionUsecaseParams extends Equatable {
   });
 
   final String reference;
+  final int siteId;
   final int clientId;
   final String creationDate;
   final int accountId;
@@ -45,6 +48,7 @@ class CreateDistributionUsecaseParams extends Equatable {
   @override
   List<Object?> get props => [
         reference,
+        siteId,
         clientId,
         creationDate,
         accountId,

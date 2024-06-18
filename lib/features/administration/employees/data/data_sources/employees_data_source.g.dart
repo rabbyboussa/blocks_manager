@@ -10,7 +10,7 @@ part of 'employees_data_source.dart';
 
 class _EmployeesDataSource implements EmployeesDataSource {
   _EmployeesDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;

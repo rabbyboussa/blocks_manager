@@ -6,6 +6,7 @@ abstract class SupplyCreationRepository {
   const SupplyCreationRepository();
 
   ResultFuture<void> createSupply({
+    required int siteId,
     required String reference,
     required int supplierId,
     required String creationDate,

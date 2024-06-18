@@ -10,7 +10,7 @@ part of 'supply_creation_data_source.dart';
 
 class _SupplyCreationDataSource implements SupplyCreationDataSource {
   _SupplyCreationDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;

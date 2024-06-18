@@ -1,6 +1,7 @@
 import 'package:blocks/core/constants/constants.dart';
 import 'package:blocks/core/presentation/bloc/image_picker/image_picker_bloc.dart';
 import 'package:blocks/core/presentation/widgets/k_textfield_with_description.dart';
+import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:blocks/features/supplies/suppliers/domain/entities/supplier_entity.dart';
 import 'package:blocks/features/supplies/suppliers/presentation/bloc/edit_supplier/edit_supplier_bloc.dart';
 import 'package:blocks/features/supplies/suppliers/presentation/bloc/suppliers/suppliers_bloc.dart';
@@ -344,6 +345,7 @@ class _SupplierDialogState extends State<SupplierDialog> {
                                 );
                               } else {
                                 _supplier = SupplierEntity(
+                                  siteId: context.read<AuthenticationBloc>().state.account!.siteId!,
                                   denomination: _denominationController.text,
                                   type: _type!,
                                   address: _addressController.text,
@@ -360,6 +362,7 @@ class _SupplierDialogState extends State<SupplierDialog> {
                               context.read<EditSupplierBloc>().add(
                                     EditEvent(
                                       supplier: _supplier!,
+                                      siteId: context.read<AuthenticationBloc>().state.account!.siteId!,
                                       modification: widget.details,
                                     ),
                                   );

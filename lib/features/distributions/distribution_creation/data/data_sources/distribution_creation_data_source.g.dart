@@ -11,7 +11,7 @@ part of 'distribution_creation_data_source.dart';
 class _DistributionCreationDataSource
     implements DistributionCreationDataSource {
   _DistributionCreationDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;

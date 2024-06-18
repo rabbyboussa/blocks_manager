@@ -34,11 +34,14 @@ class MaterialsRepositoryImpl implements MaterialsRepository {
   }
 
   @override
-  ResultFuture<MaterialModel> addMaterial(
-      {required MaterialEntity material}) async {
+  ResultFuture<MaterialModel> addMaterial({
+    required MaterialEntity material,
+    required int siteId,
+  }) async {
     try {
       final httpResponse = await _dataSource.addMaterial(
         body: {
+          'siteId': siteId,
           'designation': material.designation,
           'measurementUnit': material.measurementUnit,
           'quantity': material.quantity,

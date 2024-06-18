@@ -36,6 +36,7 @@ class DistributionCreationBloc
     final result =
         await _createDistributionUsecase(CreateDistributionUsecaseParams(
       reference: event.reference,
+      siteId: event.siteId,
       clientId: event.clientId,
       creationDate: event.creationDate,
       accountId: event.accountId,

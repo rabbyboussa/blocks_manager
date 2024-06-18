@@ -2,6 +2,7 @@ import 'package:blocks/core/constants/constants.dart';
 import 'package:blocks/core/presentation/bloc/image_picker/image_picker_bloc.dart';
 import 'package:blocks/core/presentation/widgets/k_image_picker.dart';
 import 'package:blocks/core/presentation/widgets/k_textfield_with_description.dart';
+import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:blocks/features/productions/products/domain/entities/product_entity.dart';
 import 'package:blocks/features/productions/products/presentation/bloc/edit_product/edit_product_bloc.dart';
 import 'package:blocks/features/productions/products/presentation/bloc/products/products_bloc.dart';
@@ -297,6 +298,7 @@ class _EditProductDialogState extends State<EditProductDialog> {
                               );
                             } else {
                               _product = ProductEntity(
+                                siteId: context.read<AuthenticationBloc>().state.account!.siteId!,
                                 designation: _designationController.text,
                                 width:
                                     double.parse(_widthController.text) + 0.0,
@@ -320,6 +322,7 @@ class _EditProductDialogState extends State<EditProductDialog> {
                             context.read<EditProductBloc>().add(
                                   EditEvent(
                                     product: _product!,
+                                    siteId: context.read<AuthenticationBloc>().state.account!.siteId!,
                                     modification: widget.modification,
                                   ),
                                 );

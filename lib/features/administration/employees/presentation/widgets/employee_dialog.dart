@@ -5,6 +5,7 @@ import 'package:blocks/core/presentation/widgets/k_textfield_with_description.da
 import 'package:blocks/features/administration/employees/domain/entities/employee_entity.dart';
 import 'package:blocks/features/administration/employees/presentation/bloc/edit_employee/edit_employee_bloc.dart';
 import 'package:blocks/features/administration/employees/presentation/bloc/employees/employees_bloc.dart';
+import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -417,6 +418,7 @@ class _EmployeeDialogState extends State<EmployeeDialog> {
                             } else {
                               if (widget.details) {
                                 _employee = _employee!.copyWith(
+                                  siteId: context.read<AuthenticationBloc>().state.account!.siteId!,
                                   firstname: _firstnameController.text,
                                   lastname: _lastnameController.text,
                                   genre: _genre == 'Femme' ? 0 : 1,
@@ -437,6 +439,7 @@ class _EmployeeDialogState extends State<EmployeeDialog> {
                                 );
                               } else {
                                 _employee = EmployeeEntity(
+                                  siteId: context.read<AuthenticationBloc>().state.account!.siteId!,
                                   firstname: _firstnameController.text,
                                   lastname: _lastnameController.text,
                                   genre: _genre == 'Femme' ? 0 : 1,

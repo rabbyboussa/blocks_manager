@@ -9,7 +9,8 @@ const Color kWhite = Color(0xffffffff);
 const Color kBrown = Color(0xff795548);
 
 // API
-const String kAPIBaseUrl = 'https://batirafrica.com/blocks/';
+// const String kAPIBaseUrl = 'http://www.batirafrica.com/blocks/';
+const String kAPIBaseUrl = 'http://www.batirafrica.com/blocks/';
 
 // Supabase
 const supabaseURL = 'https://thhskbhzqpmohawtfqwn.supabase.co';

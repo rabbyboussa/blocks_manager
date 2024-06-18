@@ -7,6 +7,7 @@ part 'account_model.g.dart';
 class AccountModel extends AccountEntity {
   const AccountModel({
     required int id,
+    required int siteId,
     required String type,
     int? employeeId,
     int? clientId,
@@ -16,6 +17,7 @@ class AccountModel extends AccountEntity {
     required int status,
   }) : super(
           id: id,
+          siteId: siteId,
           type: type,
           employeeId: employeeId,
           clientId: clientId,

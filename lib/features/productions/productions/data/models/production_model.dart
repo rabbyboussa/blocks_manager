@@ -7,11 +7,13 @@ part 'production_model.g.dart';
 class ProductionModel extends ProductionEntity {
   const ProductionModel({
     required int id,
+    required int siteId,
     required String reference,
     required String creationDate,
     required String operator,
   }) : super(
           id: id,
+          siteId: siteId,
           reference: reference,
           creationDate: creationDate,
           operator: operator,

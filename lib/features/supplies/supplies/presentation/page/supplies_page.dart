@@ -19,7 +19,7 @@ class _SuppliesPageState extends State<SuppliesPage> {
   void initState() {
     super.initState();
 
-    context.read<SuppliesBloc>().add(FetchSuppliesEvent());
+    context.read<SuppliesBloc>().add(FetchSuppliesEvent(siteId: context.read<AuthenticationBloc>().state.account!.siteId!));
   }
 
   @override
@@ -61,7 +61,7 @@ class _SuppliesPageState extends State<SuppliesPage> {
                           Button(
                             onPressed: () => context
                                 .read<SuppliesBloc>()
-                                .add(FetchSuppliesEvent()),
+                                .add(FetchSuppliesEvent(siteId: context.read<AuthenticationBloc>().state.account!.siteId!)),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),

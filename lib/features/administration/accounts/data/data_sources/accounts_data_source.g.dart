@@ -10,7 +10,7 @@ part of 'accounts_data_source.dart';
 
 class _AccountsDataSource implements AccountsDataSource {
   _AccountsDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;
@@ -108,7 +108,6 @@ class _AccountsDataSource implements AccountsDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    print(_result);
     AccountModel value =
         AccountModel.fromJson(_result.data!['data'] as Map<String, dynamic>);
     final httpResponse = HttpResponse(value, _result);

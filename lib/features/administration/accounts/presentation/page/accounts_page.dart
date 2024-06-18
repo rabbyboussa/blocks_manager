@@ -2,6 +2,7 @@ import 'package:blocks/core/constants/constants.dart';
 import 'package:blocks/features/administration/accounts/presentation/bloc/accounts/accounts_bloc.dart';
 import 'package:blocks/features/administration/accounts/presentation/widgets/accounts_data_grid.dart';
 import 'package:blocks/features/administration/accounts/presentation/widgets/edit_account_dialog.dart';
+import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,8 @@ class _AccountsPageState extends State<AccountsPage> {
   void initState() {
     super.initState();
 
-    context.read<AccountsBloc>().add(FetchAccountsEvent());
+    context.read<AccountsBloc>().add(FetchAccountsEvent(
+        siteId: context.read<AuthenticationBloc>().state.account!.siteId!));
   }
 
   @override
@@ -45,9 +47,13 @@ class _AccountsPageState extends State<AccountsPage> {
                       Row(
                         children: [
                           Button(
-                            onPressed: () => context
-                                .read<AccountsBloc>()
-                                .add(FetchAccountsEvent()),
+                            onPressed: () => context.read<AccountsBloc>().add(
+                                FetchAccountsEvent(
+                                    siteId: context
+                                        .read<AuthenticationBloc>()
+                                        .state
+                                        .account!
+                                        .siteId!)),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),

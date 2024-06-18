@@ -34,11 +34,14 @@ class SuppliersRepositoryImpl implements SuppliersRepository {
   }
 
   @override
-  ResultFuture<SupplierModel> addSupplier(
-      {required SupplierEntity supplier}) async {
+  ResultFuture<SupplierModel> addSupplier({
+    required SupplierEntity supplier,
+    required int siteId,
+  }) async {
     try {
       final httpResponse = await _dataSource.addSupplier(
         body: {
+          'siteId': siteId,
           'denomination': supplier.denomination,
           'type': supplier.type,
           'address': supplier.address,

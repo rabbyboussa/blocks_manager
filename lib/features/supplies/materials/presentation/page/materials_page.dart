@@ -1,5 +1,6 @@
 import 'package:blocks/core/constants/constants.dart';
 import 'package:blocks/core/presentation/bloc/image_picker/image_picker_bloc.dart';
+import 'package:blocks/features/administration/accounts/domain/entities/account_entity.dart';
 import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:blocks/features/supplies/materials/presentation/bloc/materials/materials_bloc.dart';
 import 'package:blocks/features/supplies/materials/presentation/widgets/edit_material_dialog.dart';
@@ -16,12 +17,17 @@ class MaterialsPage extends StatefulWidget {
 }
 
 class _MaterialsPageState extends State<MaterialsPage> {
+
+  late AccountEntity _account;
+
   @override
   void initState() {
     super.initState();
 
+    _account = context.read<AuthenticationBloc>().state.account!;
+
     context.read<ImagePickerBloc>().add(ResetImagePickerEvent());
-    context.read<MaterialsBloc>().add(FetchMaterialsEvent());
+    context.read<MaterialsBloc>().add(FetchMaterialsEvent(siteId: _account.siteId!));
   }
 
   @override
@@ -51,7 +57,7 @@ class _MaterialsPageState extends State<MaterialsPage> {
                           Button(
                             onPressed: () => context
                                 .read<MaterialsBloc>()
-                                .add(FetchMaterialsEvent()),
+                                .add(FetchMaterialsEvent(siteId: _account.siteId!)),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),

@@ -4,7 +4,6 @@ import 'package:blocks/features/supplies/suppliers/presentation/bloc/suppliers/s
 import 'package:blocks/features/supplies/suppliers/presentation/widgets/supplier_dialog.dart';
 import 'package:blocks/features/supplies/suppliers/presentation/widgets/suppliers_data_grid.dart';
 import 'package:fluent_ui/fluent_ui.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SuppliersPage extends StatefulWidget {
@@ -18,7 +17,8 @@ class _SuppliersPageState extends State<SuppliersPage> {
   @override
   void initState() {
     super.initState();
-    context.read<SuppliersBloc>().add(FetchSuppliersEvent());
+    context.read<SuppliersBloc>().add(FetchSuppliersEvent(
+        siteId: context.read<AuthenticationBloc>().state.account!.siteId!));
   }
 
   @override
@@ -46,14 +46,23 @@ class _SuppliersPageState extends State<SuppliersPage> {
                       Row(
                         children: [
                           Button(
-                            onPressed: () => context
-                                .read<SuppliersBloc>()
-                                .add(FetchSuppliersEvent()),
+                            onPressed: () => context.read<SuppliersBloc>().add(
+                                FetchSuppliersEvent(
+                                    siteId: context
+                                        .read<AuthenticationBloc>()
+                                        .state
+                                        .account!
+                                        .siteId!)),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),
                           Offstage(
-                            offstage: context.read<AuthenticationBloc>().state.account!.roleId == 4 ,
+                            offstage: context
+                                    .read<AuthenticationBloc>()
+                                    .state
+                                    .account!
+                                    .roleId ==
+                                4,
                             child: FilledButton(
                               child: const Text('Ajouter un fournisseur'),
                               onPressed: () => showDialog(

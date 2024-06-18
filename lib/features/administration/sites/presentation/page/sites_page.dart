@@ -1,32 +1,32 @@
 import 'package:blocks/core/constants/constants.dart';
-import 'package:blocks/features/administration/accounts/presentation/bloc/accounts/accounts_bloc.dart';
-import 'package:blocks/features/administration/accounts/presentation/widgets/accounts_data_grid.dart';
-import 'package:blocks/features/administration/accounts/presentation/widgets/edit_account_dialog.dart';
+import 'package:blocks/features/administration/sites/presentation/bloc/sites/sites_bloc.dart';
+import 'package:blocks/features/administration/sites/presentation/widgets/site_dialog.dart';
+import 'package:blocks/features/administration/sites/presentation/widgets/sites_data_grid.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class AccountsPage extends StatefulWidget {
-  const AccountsPage({super.key});
+class SitesPage extends StatefulWidget {
+  const SitesPage({super.key});
 
   @override
-  State<AccountsPage> createState() => _AccountsPageState();
+  State<SitesPage> createState() => _SitesPageState();
 }
 
-class _AccountsPageState extends State<AccountsPage> {
+class _SitesPageState extends State<SitesPage> {
   @override
   void initState() {
     super.initState();
 
-    context.read<AccountsBloc>().add(FetchAccountsEvent());
+    context.read<SitesBloc>().add(FetchSitesEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AccountsBloc, AccountsState>(
+    return BlocConsumer<SitesBloc, SitesState>(
       listener: (context, state) {},
       builder: (context, state) {
         switch (state.runtimeType) {
-          case AccountsFetchingLoadingState:
+          case SitesFetchingLoadingState:
             {
               return const Center(
                 child: ProgressRing(
@@ -34,28 +34,39 @@ class _AccountsPageState extends State<AccountsPage> {
                 ),
               );
             }
-          case AccountsFetchingDoneState:
+          case SitesFetchingDoneState:
             {
               return ScaffoldPage.scrollable(
                 header: PageHeader(
                   title: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('Comptes utilisateurs'),
+                      const Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Sites de productions'),
+                          SizedBox(height: 12),
+                          Text(
+                            'Cette page vous permet de gérer l\'ensemble de vos sites de production.\nVous pouvez ajouter un site en cliquant sur le bouton vert à droite.',
+                            style: TextStyle(
+                                fontWeight: FontWeight.normal, fontSize: 14),
+                          ),
+                        ],
+                      ),
                       Row(
                         children: [
                           Button(
                             onPressed: () => context
-                                .read<AccountsBloc>()
-                                .add(FetchAccountsEvent()),
+                                .read<SitesBloc>()
+                                .add(FetchSitesEvent()),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),
                           FilledButton(
-                            child: const Text('Ajouter un compte'),
+                            child: const Text('Ajouter un site'),
                             onPressed: () => showDialog(
                               context: context,
-                              builder: (context) => const EditAccountDialog(),
+                              builder: (context) => const SiteDialog(),
                             ),
                           )
                         ],
@@ -65,11 +76,8 @@ class _AccountsPageState extends State<AccountsPage> {
                 ),
                 children: [
                   const SizedBox(height: 16),
-                  AccountsDataGrid(
-                    accounts: state.accounts!,
-                    roles: state.roles!,
-                    employees: state.employees!,
-                    clients: state.clients!,
+                  SitesDataGrid(
+                    sites: state.sites!,
                   )
                 ],
               );

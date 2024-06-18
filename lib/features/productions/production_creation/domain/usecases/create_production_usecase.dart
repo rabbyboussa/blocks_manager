@@ -21,6 +21,7 @@ class CreateProductionUsecase
         reference: params.reference,
         creationDate: params.creationDate,
         accountId: params.accountId,
+        siteId: params.siteId,
         products: params.products,
         materials: params.materials,
         productionlines: params.productionlines,
@@ -33,6 +34,7 @@ class CreateProductionUsecaseParams extends Equatable {
     required this.reference,
     required this.creationDate,
     required this.accountId,
+    required this.siteId,
     required this.products,
     required this.materials,
     required this.productionlines,
@@ -42,6 +44,7 @@ class CreateProductionUsecaseParams extends Equatable {
   final String reference;
   final String creationDate;
   final int accountId;
+  final int siteId;
   final List<ProductEntity> products;
   final List<MaterialEntity> materials;
   final List<ProductionLineEntity> productionlines;
@@ -52,6 +55,7 @@ class CreateProductionUsecaseParams extends Equatable {
         reference,
         creationDate,
         accountId,
+        siteId,
         products,
         productionlines,
         materialsUsedLines,

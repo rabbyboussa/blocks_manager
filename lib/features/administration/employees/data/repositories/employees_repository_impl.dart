@@ -37,8 +37,11 @@ class EmployeesRepositoryImpl implements EmployeesRepository {
   ResultFuture<EmployeeModel> addEmployee(
       {required EmployeeEntity employee}) async {
     try {
+      print(employee.siteId);
+
       final httpResponse = await _dataSource.addEmployee(
         body: {
+          'siteId': employee.siteId,
           'firstname': employee.firstname,
           'lastname': employee.lastname,
           'genre': employee.genre,

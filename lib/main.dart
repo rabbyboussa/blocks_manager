@@ -6,6 +6,9 @@ import 'package:blocks/features/administration/accounts/presentation/bloc/accoun
 import 'package:blocks/features/administration/accounts/presentation/bloc/edit_account/edit_account_bloc.dart';
 import 'package:blocks/features/administration/employees/presentation/bloc/edit_employee/edit_employee_bloc.dart';
 import 'package:blocks/features/administration/employees/presentation/bloc/employees/employees_bloc.dart';
+import 'package:blocks/features/administration/sites/presentation/bloc/countries/countries_bloc.dart';
+import 'package:blocks/features/administration/sites/presentation/bloc/edit_site/edit_site_bloc.dart';
+import 'package:blocks/features/administration/sites/presentation/bloc/sites/sites_bloc.dart';
 import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:blocks/features/distributions/clients/presentation/bloc/clients/clients_bloc.dart';
 import 'package:blocks/features/distributions/clients/presentation/bloc/edit_client/edit_client_bloc.dart';
@@ -52,6 +55,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<CountriesBloc>(
+          lazy: false,
+          create: (context) => sl<CountriesBloc>()..add(FetchCountriesEvent()),
+        ),
+        BlocProvider<SitesBloc>(
+          lazy: false,
+          create: (context) => sl<SitesBloc>()..add(FetchSitesEvent()),
+        ),
+        BlocProvider<EditSiteBloc>(create: (context) => sl<EditSiteBloc>()),
         BlocProvider<AuthenticationBloc>(
             create: (context) => sl<AuthenticationBloc>()),
         BlocProvider<ImagePickerBloc>(

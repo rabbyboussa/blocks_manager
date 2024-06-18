@@ -8,6 +8,7 @@ part of 'supply_model.dart';
 
 SupplyModel _$SupplyModelFromJson(Map<String, dynamic> json) => SupplyModel(
       id: json['id'],
+      siteId: json['siteId'],
       reference: json['reference'],
       supplier: json['supplier'],
       creationDate: json['creationDate'],
@@ -17,6 +18,7 @@ SupplyModel _$SupplyModelFromJson(Map<String, dynamic> json) => SupplyModel(
 Map<String, dynamic> _$SupplyModelToJson(SupplyModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'siteId': instance.siteId,
       'reference': instance.reference,
       'supplier': instance.supplier,
       'creationDate': instance.creationDate,

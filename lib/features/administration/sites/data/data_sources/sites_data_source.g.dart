@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'accounts_data_source.dart';
+part of 'sites_data_source.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,9 +8,9 @@ part of 'accounts_data_source.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _AccountsDataSource implements AccountsDataSource {
-  _AccountsDataSource(this._dio) {
-    baseUrl ??= 'http://localhost/blocks/';
+class _SitesDataSource implements SitesDataSource {
+  _SitesDataSource(this._dio) {
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;
@@ -18,21 +18,21 @@ class _AccountsDataSource implements AccountsDataSource {
   String? baseUrl;
 
   @override
-  Future<HttpResponse<List<AccountModel>>> fetchAccounts() async {
+  Future<HttpResponse<List<SiteModel>>> fetchSites() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<List<AccountModel>>>(Options(
+        _setStreamType<HttpResponse<List<SiteModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'administration/accounts/get_accounts.php',
+              'administration/sites/get_sites.php',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -41,30 +41,30 @@ class _AccountsDataSource implements AccountsDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    List<AccountModel> value = _result.data!['data']
-        .map<AccountModel>(
-            (dynamic i) => AccountModel.fromJson(i as Map<String, dynamic>))
+    List<SiteModel> value = _result.data!['data']
+        .map<SiteModel>(
+            (dynamic i) => SiteModel.fromJson(i as Map<String, dynamic>))
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<List<RoleModel>>> fetchRoles() async {
+  Future<HttpResponse<List<CountryModel>>> fetchCountries() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     _headers.removeWhere((k, v) => v == null);
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<List<RoleModel>>>(Options(
+        _setStreamType<HttpResponse<List<CountryModel>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'administration/accounts/get_roles.php',
+              'administration/sites/get_countries.php',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -73,16 +73,16 @@ class _AccountsDataSource implements AccountsDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    List<RoleModel> value = _result.data!['data']
-        .map<RoleModel>(
-            (dynamic i) => RoleModel.fromJson(i as Map<String, dynamic>))
+    List<CountryModel> value = _result.data!['data']
+        .map<CountryModel>(
+            (dynamic i) => CountryModel.fromJson(i as Map<String, dynamic>))
         .toList();
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<AccountModel>> addAccount({
+  Future<HttpResponse<SiteModel>> addSite({
     required Map<String, dynamic> body,
   }) async {
     const _extra = <String, dynamic>{};
@@ -92,14 +92,14 @@ class _AccountsDataSource implements AccountsDataSource {
     final _data = <String, dynamic>{};
     _data.addAll(body);
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<AccountModel>>(Options(
+        _setStreamType<HttpResponse<SiteModel>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              'administration/accounts/add_account.php',
+              'administration/sites/add_site.php',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -108,15 +108,14 @@ class _AccountsDataSource implements AccountsDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    print(_result);
-    AccountModel value =
-        AccountModel.fromJson(_result.data!['data'] as Map<String, dynamic>);
+    SiteModel value =
+        SiteModel.fromJson(_result.data!['data'] as Map<String, dynamic>);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<void>> updateAccount({
+  Future<HttpResponse<void>> updateSite({
     required Map<String, dynamic> body,
   }) async {
     const _extra = <String, dynamic>{};
@@ -133,7 +132,7 @@ class _AccountsDataSource implements AccountsDataSource {
     )
             .compose(
               _dio.options,
-              'administration/accounts/update_account.php',
+              'administration/sites/update_site.php',
               queryParameters: queryParameters,
               data: _data,
             )

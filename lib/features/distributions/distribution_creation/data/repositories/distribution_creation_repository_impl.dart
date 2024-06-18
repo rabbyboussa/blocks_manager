@@ -18,6 +18,7 @@ class DistributionCreationRepositoryImpl
   @override
   ResultFutureVoid createDistribution({
     required String reference,
+    required int siteId,
     required int clientId,
     required String creationDate,
     required int accountId,
@@ -29,6 +30,7 @@ class DistributionCreationRepositoryImpl
         body: {
           'generalInfo': {
             'reference': reference,
+            'siteId': siteId,
             'clientId': clientId,
             'creationDate': creationDate,
             'accountId': accountId,

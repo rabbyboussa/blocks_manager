@@ -7,6 +7,7 @@ part 'product_model.g.dart';
 class ProductModel extends ProductEntity {
   const ProductModel({
     required int id,
+    required int siteId,
     required String designation,
     String? description,
     required double width,
@@ -18,6 +19,7 @@ class ProductModel extends ProductEntity {
     String? imagePath,
   }) : super(
           id: id,
+          siteId: siteId,
           designation: designation,
           description: description,
           width: width,

@@ -6,6 +6,9 @@ abstract class SuppliersRepository {
 
   ResultFuture<List<SupplierEntity>> fetchSuppliers();
 
-  ResultFuture<SupplierEntity> addSupplier({required SupplierEntity supplier});
+  ResultFuture<SupplierEntity> addSupplier({
+    required SupplierEntity supplier,
+    required int siteId,
+  });
   ResultFutureVoid updateSupplier({required SupplierEntity supplier});
 }

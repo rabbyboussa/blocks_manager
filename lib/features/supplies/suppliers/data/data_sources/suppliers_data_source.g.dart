@@ -10,7 +10,7 @@ part of 'suppliers_data_source.dart';
 
 class _SuppliersDataSource implements SuppliersDataSource {
   _SuppliersDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;

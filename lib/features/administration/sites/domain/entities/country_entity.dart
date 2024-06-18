@@ -1,25 +1,21 @@
 import 'package:equatable/equatable.dart';
 
-class RoleEntity extends Equatable {
-  const RoleEntity({
+class CountryEntity extends Equatable {
+  const CountryEntity({
     this.id,
     required this.name,
-    this.description,
   });
 
   final int? id;
   final String name;
-  final String? description;
 
-  RoleEntity copyWith({
+  CountryEntity copyWith({
     int? id,
     String? name,
-    String? description,
   }) {
-    return RoleEntity(
+    return CountryEntity(
       id: id ?? this.id,
       name: name ?? this.name,
-      description: description ?? this.description,
     );
   }
 
@@ -27,6 +23,5 @@ class RoleEntity extends Equatable {
   List<Object?> get props => [
         id,
         name,
-        description,
       ];
 }

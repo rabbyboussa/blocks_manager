@@ -53,8 +53,10 @@ class EditProductBloc extends Bloc<EditProductEvent, EditProductState> {
           },
         );
       } else {
-        final result =
-            await _addProductUsecase(AddProductUsecaseParams(product: product));
+        final result = await _addProductUsecase(AddProductUsecaseParams(
+          product: product,
+          siteId: event.siteId,
+        ));
 
         result.fold(
           (failure) {

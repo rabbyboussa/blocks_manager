@@ -10,7 +10,7 @@ part of 'distribution_details_data_source.dart';
 
 class _DistributionDetailsDataSource implements DistributionDetailsDataSource {
   _DistributionDetailsDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;

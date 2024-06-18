@@ -60,6 +60,7 @@ class AccountsRepositoryImpl implements AccountsRepository {
     try {
       final httpResponse = await _dataSource.addAccount(
         body: {
+          'siteId': account.siteId,
           'type': account.type,
           'employeeId': account.employeeId,
           'clientId': account.clientId,

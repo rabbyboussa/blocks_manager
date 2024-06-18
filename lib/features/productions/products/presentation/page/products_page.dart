@@ -21,7 +21,8 @@ class _ProductsPageState extends State<ProductsPage> {
     super.initState();
 
     context.read<ImagePickerBloc>().add(ResetImagePickerEvent());
-    context.read<ProductsBloc>().add(FetchProductsEvent());
+    context.read<ProductsBloc>().add(FetchProductsEvent(
+        siteId: context.read<AuthenticationBloc>().state.account!.siteId!));
   }
 
   @override
@@ -61,14 +62,23 @@ class _ProductsPageState extends State<ProductsPage> {
                       Row(
                         children: [
                           Button(
-                            onPressed: () => context
-                                .read<ProductsBloc>()
-                                .add(FetchProductsEvent()),
+                            onPressed: () => context.read<ProductsBloc>().add(
+                                FetchProductsEvent(
+                                    siteId: context
+                                        .read<AuthenticationBloc>()
+                                        .state
+                                        .account!
+                                        .siteId!)),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),
                           Offstage(
-                            offstage: context.read<AuthenticationBloc>().state.account!.roleId == 4 ,
+                            offstage: context
+                                    .read<AuthenticationBloc>()
+                                    .state
+                                    .account!
+                                    .roleId ==
+                                4,
                             child: FilledButton(
                               child: const Text('Ajouter un produit'),
                               onPressed: () => showDialog(

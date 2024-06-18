@@ -26,6 +26,9 @@ class ProductionsBloc extends Bloc<ProductionsEvent, ProductionsState> {
         emit(ProductionsFetchingFailedState(message: failure.message));
       },
       (productions) {
+
+        productions.retainWhere((element) => element.siteId == event.siteId);
+
         emit(
           ProductionsFetchingDoneState(productions: productions),
         );

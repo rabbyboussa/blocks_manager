@@ -1,8 +1,7 @@
 import 'package:blocks/core/constants/constants.dart';
 import 'package:blocks/core/presentation/widgets/k_back_button.dart';
 import 'package:blocks/core/presentation/widgets/k_textfield_with_description.dart';
-import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart'
-    as authentication;
+import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart' as auth;
 import 'package:blocks/features/supplies/materials/domain/entities/material_entity.dart';
 import 'package:blocks/features/supplies/suppliers/domain/entities/supplier_entity.dart';
 import 'package:blocks/features/supplies/supplies/presentation/bloc/suppliers/supplies_bloc.dart';
@@ -39,7 +38,7 @@ class _SupplyCreationPageState extends State<SupplyCreationPage> {
   @override
   void initState() {
     super.initState();
-    context.read<SupplyCreationBloc>().add(FetchDataEvent());
+    context.read<SupplyCreationBloc>().add(FetchDataEvent(siteId: context.read<auth.AuthenticationBloc>().state.account!.siteId!));
   }
 
   @override
@@ -73,7 +72,7 @@ class _SupplyCreationPageState extends State<SupplyCreationPage> {
             }
           case SupplyCreationDoneState:
             {
-              context.read<SuppliesBloc>().add(FetchSuppliesEvent());
+              context.read<SuppliesBloc>().add(FetchSuppliesEvent(siteId: context.read<auth.AuthenticationBloc>().state.account!.siteId!));
               context.pop();
               showInfoBar(
                 context,
@@ -340,6 +339,11 @@ class _SupplyCreationPageState extends State<SupplyCreationPage> {
                                     context
                                         .read<SupplyCreationBloc>()
                                         .add(CreateSupplyEvent(
+                                          siteId: context
+                                              .read<auth.AuthenticationBloc>()
+                                              .state
+                                              .account!
+                                              .siteId!,
                                           reference:
                                               'AP${DateTime.now().millisecondsSinceEpoch.remainder(10000000).toString()}',
                                           supplierId: _selectedSupplier!.id!,
@@ -348,7 +352,7 @@ class _SupplyCreationPageState extends State<SupplyCreationPage> {
                                               .format(DateTime.now()),
                                           accountId: context
                                               .read<
-                                                  authentication
+                                                  auth
                                                   .AuthenticationBloc>()
                                               .state
                                               .account!

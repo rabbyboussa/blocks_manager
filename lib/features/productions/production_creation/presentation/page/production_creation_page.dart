@@ -83,7 +83,7 @@ class _ProductionCreationPageState extends State<ProductionCreationPage> {
             }
           case ProductionCreationDoneState:
             {
-              context.read<ProductionsBloc>().add(FetchProductionsEvent());
+              context.read<ProductionsBloc>().add(FetchProductionsEvent(siteId: context.read<authentication.AuthenticationBloc>().state.account!.siteId!));
               context.pop();
               showInfoBar(
                 context,
@@ -565,6 +565,13 @@ class _ProductionCreationPageState extends State<ProductionCreationPage> {
                                                   .state
                                                   .account!
                                                   .id!,
+                                              siteId: context
+                                                  .read<
+                                                  authentication
+                                                      .AuthenticationBloc>()
+                                                  .state
+                                                  .account!
+                                                  .siteId!,
                                               products: _products,
                                               materials: _materials,
                                               productionLines: productionLines,

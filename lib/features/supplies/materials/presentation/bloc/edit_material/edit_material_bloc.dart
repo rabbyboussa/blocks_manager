@@ -53,8 +53,10 @@ class EditMaterialBloc extends Bloc<EditMaterialEvent, EditMaterialState> {
           },
         );
       } else {
-        final result = await _addMaterialsUsecase(
-            AddMaterialUsecaseParams(material: material));
+        final result = await _addMaterialsUsecase(AddMaterialUsecaseParams(
+          material: material,
+          siteId: event.siteId!,
+        ));
 
         result.fold(
           (failure) {

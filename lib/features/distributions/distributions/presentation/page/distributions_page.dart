@@ -20,7 +20,7 @@ class _DistributionsPageState extends State<DistributionsPage> {
   void initState() {
     super.initState();
 
-    context.read<DistributionsBloc>().add(FetchDistributionsEvent());
+    context.read<DistributionsBloc>().add(FetchDistributionsEvent(siteId: context.read<AuthenticationBloc>().state.account!.siteId!));
   }
 
   @override
@@ -62,7 +62,7 @@ class _DistributionsPageState extends State<DistributionsPage> {
                           Button(
                             onPressed: () => context
                                 .read<DistributionsBloc>()
-                                .add(FetchDistributionsEvent()),
+                                .add(FetchDistributionsEvent(siteId: context.read<AuthenticationBloc>().state.account!.siteId!)),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),

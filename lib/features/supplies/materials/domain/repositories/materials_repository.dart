@@ -6,7 +6,10 @@ abstract class MaterialsRepository {
 
   ResultFuture<List<MaterialEntity>> fetchMaterials();
 
-  ResultFuture<MaterialEntity> addMaterial({required MaterialEntity material});
+  ResultFuture<MaterialEntity> addMaterial({
+    required MaterialEntity material,
+    required int siteId,
+  });
 
   ResultFutureVoid updateMaterial({required MaterialEntity material});
 }

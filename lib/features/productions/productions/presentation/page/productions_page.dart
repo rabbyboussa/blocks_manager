@@ -20,7 +20,8 @@ class _ProductionsPageState extends State<ProductionsPage> {
   void initState() {
     super.initState();
 
-    context.read<ProductionsBloc>().add(FetchProductionsEvent());
+    context.read<ProductionsBloc>().add(FetchProductionsEvent(
+        siteId: context.read<AuthenticationBloc>().state.account!.siteId!));
   }
 
   @override
@@ -62,12 +63,22 @@ class _ProductionsPageState extends State<ProductionsPage> {
                           Button(
                             onPressed: () => context
                                 .read<ProductionsBloc>()
-                                .add(FetchProductionsEvent()),
+                                .add(FetchProductionsEvent(
+                                    siteId: context
+                                        .read<AuthenticationBloc>()
+                                        .state
+                                        .account!
+                                        .siteId!)),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),
                           Offstage(
-                            offstage: context.read<AuthenticationBloc>().state.account!.roleId == 4 ,
+                            offstage: context
+                                    .read<AuthenticationBloc>()
+                                    .state
+                                    .account!
+                                    .roleId ==
+                                4,
                             child: FilledButton(
                               child: const Text('Ajouter une production'),
                               onPressed: () => context

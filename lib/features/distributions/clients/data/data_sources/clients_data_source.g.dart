@@ -10,7 +10,7 @@ part of 'clients_data_source.dart';
 
 class _ClientsDataSource implements ClientsDataSource {
   _ClientsDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;

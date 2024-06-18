@@ -116,6 +116,8 @@ class AccountsBloc extends Bloc<AccountsEvent, AccountsState> {
     if (errorOccured) {
       emit(AccountsFetchingFailedState(message: errorMessage));
     } else {
+      accounts.retainWhere((element) => element.siteId == event.siteId);
+
       emit(AccountsFetchingDoneState(
         accounts: accounts,
         roles: roles,

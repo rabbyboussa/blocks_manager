@@ -14,6 +14,7 @@ final class CreateProductionEvent extends ProductionCreationEvent {
     required this.reference,
     required this.creationDate,
     required this.accountId,
+    required this.siteId,
     required this.products,
     required this.materials,
     required this.productionLines,
@@ -23,6 +24,7 @@ final class CreateProductionEvent extends ProductionCreationEvent {
   final String reference;
   final String creationDate;
   final int accountId;
+  final int siteId;
   final List<ProductEntity> products;
   final List<MaterialEntity> materials;
   final List<ProductionLineEntity> productionLines;
@@ -33,6 +35,7 @@ final class CreateProductionEvent extends ProductionCreationEvent {
         reference,
         creationDate,
         accountId,
+        siteId,
         products,
         productionLines,
         materialsUsedLines,

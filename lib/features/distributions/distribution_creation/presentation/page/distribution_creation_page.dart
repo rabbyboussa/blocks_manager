@@ -74,7 +74,7 @@ class _DistributionCreationPageState extends State<DistributionCreationPage> {
             }
           case DistributionCreationDoneState:
             {
-              context.read<DistributionsBloc>().add(FetchDistributionsEvent());
+              context.read<DistributionsBloc>().add(FetchDistributionsEvent(siteId: context.read<authentication.AuthenticationBloc>().state.account!.siteId!));
               context.pop();
               showInfoBar(
                 context,
@@ -381,6 +381,13 @@ class _DistributionCreationPageState extends State<DistributionCreationPage> {
                                               .state
                                               .account!
                                               .id!,
+                                          siteId: context
+                                              .read<
+                                              authentication
+                                                  .AuthenticationBloc>()
+                                              .state
+                                              .account!
+                                              .siteId!,
                                           products: _products,
                                           lines: distributionLines,
                                         ));

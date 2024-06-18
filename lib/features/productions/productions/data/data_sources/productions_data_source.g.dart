@@ -10,7 +10,7 @@ part of 'productions_data_source.dart';
 
 class _ProductionsDataSource implements ProductionsDataSource {
   _ProductionsDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;

@@ -16,6 +16,16 @@ import 'package:blocks/features/administration/employees/domain/usecases/fetch_e
 import 'package:blocks/features/administration/employees/domain/usecases/update_employee_usecase.dart';
 import 'package:blocks/features/administration/employees/presentation/bloc/edit_employee/edit_employee_bloc.dart';
 import 'package:blocks/features/administration/employees/presentation/bloc/employees/employees_bloc.dart';
+import 'package:blocks/features/administration/sites/data/data_sources/sites_data_source.dart';
+import 'package:blocks/features/administration/sites/data/repositories/sites_repository_impl.dart';
+import 'package:blocks/features/administration/sites/domain/repositories/sites_repository.dart';
+import 'package:blocks/features/administration/sites/domain/usecases/add_site_usecase.dart';
+import 'package:blocks/features/administration/sites/domain/usecases/fetch_countries_usecase.dart';
+import 'package:blocks/features/administration/sites/domain/usecases/fetch_sites_usecase.dart';
+import 'package:blocks/features/administration/sites/domain/usecases/update_site_usecase.dart';
+import 'package:blocks/features/administration/sites/presentation/bloc/countries/countries_bloc.dart';
+import 'package:blocks/features/administration/sites/presentation/bloc/edit_site/edit_site_bloc.dart';
+import 'package:blocks/features/administration/sites/presentation/bloc/sites/sites_bloc.dart';
 import 'package:blocks/features/authentication/data/data_sources/authentication_data_source.dart';
 import 'package:blocks/features/authentication/data/repositories/authentication_repository_impl.dart';
 import 'package:blocks/features/authentication/domain/repositories/authentication_repository.dart';
@@ -304,4 +314,26 @@ Future<void> initDependencies() async {
         ))
     ..registerLazySingleton(() => AddAccountUsecase(repository: sl()))
     ..registerLazySingleton(() => UpdateAccountUsecase(repository: sl()));
+
+  sl
+    ..registerFactory(() => CountriesBloc(
+          fetchCountriesUsecase: sl(),
+        ))
+    ..registerLazySingleton(() => FetchCountriesUsecase(repository: sl()))
+    ..registerLazySingleton<SitesRepository>(
+        () => SitesRepositoryImpl(dataSource: SitesDataSource(sl())));
+
+  sl
+    ..registerFactory(() => SitesBloc(
+          fetchSitesUsecase: sl(),
+        ))
+    ..registerLazySingleton(() => FetchSitesUsecase(repository: sl()));
+
+  sl
+    ..registerFactory(() => EditSiteBloc(
+          addSiteUsecase: sl(),
+          updateSiteUsecase: sl(),
+        ))
+    ..registerLazySingleton(() => AddSiteUsecase(repository: sl()))
+    ..registerLazySingleton(() => UpdateSiteUsecase(repository: sl()));
 }

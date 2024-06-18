@@ -6,7 +6,10 @@ abstract class ProductsRepository {
 
   ResultFuture<List<ProductEntity>> fetchProducts();
 
-  ResultFuture<ProductEntity> addProduct({required ProductEntity product});
+  ResultFuture<ProductEntity> addProduct({
+    required ProductEntity product,
+    required int siteId,
+  });
 
   ResultFutureVoid updateProduct({required ProductEntity product});
 }

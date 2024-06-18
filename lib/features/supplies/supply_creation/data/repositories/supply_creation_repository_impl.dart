@@ -15,6 +15,7 @@ class SupplyCreationRepositoryImpl implements SupplyCreationRepository {
 
   @override
   ResultFutureVoid createSupply({
+    required int siteId,
     required String reference,
     required int supplierId,
     required String creationDate,
@@ -26,6 +27,7 @@ class SupplyCreationRepositoryImpl implements SupplyCreationRepository {
       final httpResponse = await _dataSource.createSupply(
         body: {
           'generalInfo': {
+            'siteId': siteId,
             'reference': reference,
             'supplierId': supplierId,
             'creationDate': creationDate,

@@ -10,7 +10,7 @@ part of 'production_creation_data_source.dart';
 
 class _ProductionCreationDataSource implements ProductionCreationDataSource {
   _ProductionCreationDataSource(this._dio) {
-    baseUrl ??= 'https://batirafrica.com/blocks/';
+    baseUrl ??= 'http://www.batirafrica.com/blocks/';
   }
 
   final Dio _dio;
@@ -44,6 +44,8 @@ class _ProductionCreationDataSource implements ProductionCreationDataSource {
               _dio.options.baseUrl,
               baseUrl,
             ))));
+
+    print(_result);
 
     final httpResponse = HttpResponse(null, _result);
     return httpResponse;

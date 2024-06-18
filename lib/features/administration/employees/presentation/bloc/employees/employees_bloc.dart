@@ -48,6 +48,7 @@ class EmployeesBloc extends Bloc<EmployeesEvent, EmployeesState> {
         emit(EmployeesFetchingFailedState(message: failure.message));
       },
       (employees) {
+        employees.retainWhere((element) => element.siteId == event.siteId);
         emit(
           EmployeesFetchingDoneState(employees: employees),
         );

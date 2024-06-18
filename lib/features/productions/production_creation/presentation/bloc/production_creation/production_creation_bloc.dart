@@ -38,6 +38,7 @@ class ProductionCreationBloc
       reference: event.reference,
       creationDate: event.creationDate,
       accountId: event.accountId,
+      siteId: event.siteId,
       products: event.products,
       materials: event.materials,
       productionlines: event.productionLines,

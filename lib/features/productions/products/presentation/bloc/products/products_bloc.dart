@@ -46,6 +46,8 @@ class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
         emit(ProductsFetchingFailedState(message: failure.message));
       },
       (products) {
+        products.retainWhere((element) => element.siteId == event.siteId);
+
         emit(
           ProductsFetchingDoneState(products: products),
         );

@@ -13,14 +13,24 @@ class AddSupplierUsecase
 
   @override
   ResultFuture<SupplierEntity> call(AddSupplierUsecaseParams params) async =>
-      _repository.addSupplier(supplier: params.supplier);
+      _repository.addSupplier(
+        supplier: params.supplier,
+        siteId: params.siteId,
+      );
 }
 
 class AddSupplierUsecaseParams extends Equatable {
-  const AddSupplierUsecaseParams({required this.supplier});
+  const AddSupplierUsecaseParams({
+    required this.supplier,
+    required this.siteId,
+  });
 
   final SupplierEntity supplier;
+  final int siteId;
 
   @override
-  List<Object?> get props => [supplier];
+  List<Object?> get props => [
+        supplier,
+        siteId,
+      ];
 }

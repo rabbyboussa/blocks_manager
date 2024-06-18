@@ -3,6 +3,7 @@ import 'package:blocks/core/presentation/bloc/image_picker/image_picker_bloc.dar
 import 'package:blocks/features/administration/employees/presentation/bloc/employees/employees_bloc.dart';
 import 'package:blocks/features/administration/employees/presentation/widgets/employee_dialog.dart';
 import 'package:blocks/features/administration/employees/presentation/widgets/employees_data_grid.dart';
+import 'package:blocks/features/authentication/presentation/bloc/authentication_bloc.dart';
 import 'package:fluent_ui/fluent_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +20,8 @@ class _EmployeesPageState extends State<EmployeesPage> {
     super.initState();
 
     context.read<ImagePickerBloc>().add(ResetImagePickerEvent());
-    context.read<EmployeesBloc>().add(FetchEmployeesEvent());
+    context.read<EmployeesBloc>().add(FetchEmployeesEvent(
+        siteId: context.read<AuthenticationBloc>().state.account!.siteId!));
   }
 
   @override
@@ -47,9 +49,13 @@ class _EmployeesPageState extends State<EmployeesPage> {
                       Row(
                         children: [
                           Button(
-                            onPressed: () => context
-                                .read<EmployeesBloc>()
-                                .add(FetchEmployeesEvent()),
+                            onPressed: () => context.read<EmployeesBloc>().add(
+                                FetchEmployeesEvent(
+                                    siteId: context
+                                        .read<AuthenticationBloc>()
+                                        .state
+                                        .account!
+                                        .siteId!)),
                             child: const Text('Rafraîchir la page'),
                           ),
                           const SizedBox(width: 8),

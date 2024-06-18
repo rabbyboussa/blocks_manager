@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 class ProductEntity extends Equatable {
   const ProductEntity({
     this.id,
+    required this.siteId,
     required this.designation,
     this.description,
     required this.width,
@@ -15,6 +16,7 @@ class ProductEntity extends Equatable {
   });
 
   final int? id;
+  final int siteId;
   final String designation;
   final String? description;
   final double width;
@@ -27,6 +29,7 @@ class ProductEntity extends Equatable {
 
   ProductEntity copyWith({
     int? id,
+    int? siteId,
     String? designation,
     String? description,
     double? width,
@@ -39,6 +42,7 @@ class ProductEntity extends Equatable {
   }) {
     return ProductEntity(
       id: id ?? this.id,
+      siteId: siteId ?? this.siteId,
       designation: designation ?? this.designation,
       description: description ?? this.description,
       width: width ?? this.width,
@@ -54,6 +58,7 @@ class ProductEntity extends Equatable {
   @override
   List<Object?> get props => [
         id,
+        siteId,
         designation,
         width,
         length,

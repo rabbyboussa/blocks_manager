@@ -13,16 +13,24 @@ class AddMaterialUsecase
 
   @override
   ResultFuture<MaterialEntity> call(AddMaterialUsecaseParams params) async =>
-      _repository.addMaterial(material: params.material);
+      _repository.addMaterial(
+        material: params.material,
+        siteId: params.siteId,
+      );
 }
 
 class AddMaterialUsecaseParams extends Equatable {
   const AddMaterialUsecaseParams({
     required this.material,
+    required this.siteId,
   });
 
   final MaterialEntity material;
+  final int siteId;
 
   @override
-  List<Object?> get props => [material];
+  List<Object?> get props => [
+        material,
+        siteId,
+      ];
 }

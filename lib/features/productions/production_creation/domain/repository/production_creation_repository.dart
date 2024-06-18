@@ -11,6 +11,7 @@ abstract class ProductionCreationRepository {
     required String reference,
     required String creationDate,
     required int accountId,
+    required int siteId,
     required List<ProductEntity> products,
     required List<MaterialEntity> materials,
     required List<ProductionLineEntity> productionlines,

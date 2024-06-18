@@ -7,7 +7,14 @@ sealed class EmployeesEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class FetchEmployeesEvent extends EmployeesEvent {}
+final class FetchEmployeesEvent extends EmployeesEvent {
+  const FetchEmployeesEvent({required this.siteId});
+
+  final int siteId;
+
+  @override
+  List<Object> get props => [siteId];
+}
 
 final class EmployeeAddedEvent extends EmployeesEvent {
   const EmployeeAddedEvent({required this.employee});

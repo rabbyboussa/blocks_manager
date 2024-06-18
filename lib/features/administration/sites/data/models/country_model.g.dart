@@ -1,19 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'role_model.dart';
+part of 'country_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-RoleModel _$RoleModelFromJson(Map<String, dynamic> json) => RoleModel(
+CountryModel _$CountryModelFromJson(Map<String, dynamic> json) => CountryModel(
       id: json['id'],
       name: json['name'],
-      description: json['description'],
     );
 
-Map<String, dynamic> _$RoleModelToJson(RoleModel instance) => <String, dynamic>{
+Map<String, dynamic> _$CountryModelToJson(CountryModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'description': instance.description,
     };

@@ -48,6 +48,9 @@ class MaterialsBloc extends Bloc<MaterialsEvent, MaterialsState> {
         emit(MaterialsFetchingFailedState(message: failure.message));
       },
       (materials) {
+
+        materials.retainWhere((element) => element.siteId == event.siteId);
+
         emit(
           MaterialsFetchingDoneState(materials: materials),
         );

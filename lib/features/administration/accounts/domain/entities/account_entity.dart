@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 class AccountEntity extends Equatable {
   const AccountEntity({
     this.id,
+    required this.siteId,
     required this.type,
     this.employeeId,
     this.clientId,
@@ -13,6 +14,7 @@ class AccountEntity extends Equatable {
   });
 
   final int? id;
+  final int siteId;
   final String type;
   final int? employeeId;
   final int? clientId;
@@ -23,6 +25,7 @@ class AccountEntity extends Equatable {
 
   AccountEntity copyWith({
     int? id,
+    int? siteId,
     String? type,
     int? employeeId,
     int? clientId,
@@ -33,6 +36,7 @@ class AccountEntity extends Equatable {
   }) {
     return AccountEntity(
       id: id ?? this.id,
+      siteId: siteId ?? this.siteId,
       type: type ?? this.type,
       employeeId: employeeId ?? this.employeeId,
       clientId: clientId ?? this.clientId,
@@ -46,6 +50,7 @@ class AccountEntity extends Equatable {
   @override
   List<Object?> get props => [
         id,
+        siteId,
         employeeId,
         username,
         password,

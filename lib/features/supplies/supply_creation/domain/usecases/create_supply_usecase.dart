@@ -15,6 +15,7 @@ class CreateSupplyUsecase
   @override
   ResultFutureVoid call(CreateSupplyUsecaseParams params) async =>
       _repository.createSupply(
+        siteId: params.siteId,
         reference: params.reference,
         supplierId: params.supplierId,
         creationDate: params.creationDate,
@@ -26,6 +27,7 @@ class CreateSupplyUsecase
 
 class CreateSupplyUsecaseParams extends Equatable {
   const CreateSupplyUsecaseParams({
+    required this.siteId,
     required this.reference,
     required this.supplierId,
     required this.creationDate,
@@ -34,6 +36,7 @@ class CreateSupplyUsecaseParams extends Equatable {
     required this.lines,
   });
 
+  final int siteId;
   final String reference;
   final int supplierId;
   final String creationDate;
@@ -43,6 +46,7 @@ class CreateSupplyUsecaseParams extends Equatable {
 
   @override
   List<Object?> get props => [
+        siteId,
         reference,
         supplierId,
         creationDate,

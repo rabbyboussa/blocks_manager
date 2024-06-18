@@ -1,23 +1,23 @@
 import 'package:blocks/core/errors/exception.dart';
 import 'package:blocks/core/errors/failure.dart';
 import 'package:blocks/core/typedef/typedef.dart';
-import 'package:blocks/features/administration/accounts/data/data_sources/accounts_data_source.dart';
-import 'package:blocks/features/administration/accounts/data/models/account_model.dart';
-import 'package:blocks/features/administration/accounts/data/models/role_model.dart';
-import 'package:blocks/features/administration/accounts/domain/entities/account_entity.dart';
-import 'package:blocks/features/administration/accounts/domain/repositories/accounts_repository.dart';
+import 'package:blocks/features/administration/sites/data/data_sources/sites_data_source.dart';
+import 'package:blocks/features/administration/sites/data/models/country_model.dart';
+import 'package:blocks/features/administration/sites/data/models/site_model.dart';
+import 'package:blocks/features/administration/sites/domain/entities/site_entity.dart';
+import 'package:blocks/features/administration/sites/domain/repositories/sites_repository.dart';
 import 'package:dartz/dartz.dart';
 
-class AccountsRepositoryImpl implements AccountsRepository {
-  AccountsRepositoryImpl({required AccountsDataSource dataSource})
+class SitesRepositoryImpl implements SitesRepository {
+  SitesRepositoryImpl({required SitesDataSource dataSource})
       : _dataSource = dataSource;
 
-  final AccountsDataSource _dataSource;
+  final SitesDataSource _dataSource;
 
   @override
-  ResultFuture<List<AccountModel>> fetchAccounts() async {
+  ResultFuture<List<SiteModel>> fetchSites() async {
     try {
-      final httpResponse = await _dataSource.fetchAccounts();
+      final httpResponse = await _dataSource.fetchSites();
 
       if (httpResponse.response.statusCode == 200) {
         return Right(httpResponse.data);
@@ -35,9 +35,9 @@ class AccountsRepositoryImpl implements AccountsRepository {
   }
 
   @override
-  ResultFuture<List<RoleModel>> fetchRoles() async {
+  ResultFuture<List<CountryModel>> fetchCountries() async {
     try {
-      final httpResponse = await _dataSource.fetchRoles();
+      final httpResponse = await _dataSource.fetchCountries();
 
       if (httpResponse.response.statusCode == 200) {
         return Right(httpResponse.data);
@@ -55,18 +55,20 @@ class AccountsRepositoryImpl implements AccountsRepository {
   }
 
   @override
-  ResultFuture<AccountModel> addAccount(
-      {required AccountEntity account}) async {
+  ResultFuture<SiteModel> addSite({required SiteEntity site}) async {
     try {
-      final httpResponse = await _dataSource.addAccount(
+      final httpResponse = await _dataSource.addSite(
         body: {
-          'type': account.type,
-          'employeeId': account.employeeId,
-          'clientId': account.clientId,
-          'username': account.username,
-          'password': account.password,
-          'roleId': account.roleId,
-          'status': account.status,
+          'name': site.name,
+          'active': site.active,
+          'address': site.address,
+          'city': site.city,
+          'countryId': site.countryId,
+          'phoneNumber': site.phoneNumber,
+          'email': site.email,
+          'fax': site.fax,
+          'website': site.website,
+          'notes': site.notes,
         },
       );
 
@@ -86,16 +88,21 @@ class AccountsRepositoryImpl implements AccountsRepository {
   }
 
   @override
-  ResultFutureVoid updateAccount({required AccountEntity account}) async {
+  ResultFutureVoid updateSite({required SiteEntity site}) async {
     try {
-      final httpResponse = await _dataSource.updateAccount(
+      final httpResponse = await _dataSource.updateSite(
         body: {
-          'idToUpdate': account.id,
-          'newEmployeeId': account.employeeId,
-          'newUsername': account.username,
-          'newPassword': account.password,
-          'newRoleId': account.roleId,
-          'newStatus': account.status,
+          'idToUpdate': site.id,
+          'newDenomination': site.name,
+          'newActive': site.active,
+          'newAddress': site.address,
+          'newCity': site.city,
+          'newCountryId': site.countryId,
+          'newPhoneNumber': site.phoneNumber,
+          'newEmail': site.email,
+          'newFax': site.fax,
+          'newWebsite': site.website,
+          'newNotes': site.notes,
         },
       );
 

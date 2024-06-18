@@ -7,10 +7,18 @@ sealed class SupplyCreationEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class FetchDataEvent extends SupplyCreationEvent {}
+final class FetchDataEvent extends SupplyCreationEvent {
+  const FetchDataEvent({required this.siteId});
+
+  final int siteId;
+
+  @override
+  List<Object> get props => [siteId];
+}
 
 final class CreateSupplyEvent extends SupplyCreationEvent {
   const CreateSupplyEvent({
+    required this.siteId,
     required this.reference,
     required this.supplierId,
     required this.creationDate,
@@ -19,6 +27,7 @@ final class CreateSupplyEvent extends SupplyCreationEvent {
     required this.lines,
   });
 
+  final int siteId;
   final String reference;
   final int supplierId;
   final String creationDate;
@@ -28,6 +37,7 @@ final class CreateSupplyEvent extends SupplyCreationEvent {
 
   @override
   List<Object> get props => [
+        siteId,
         reference,
         supplierId,
         creationDate,

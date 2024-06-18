@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 class SupplierEntity extends Equatable {
   const SupplierEntity({
     this.id,
+    required this.siteId,
     required this.denomination,
     required this.type,
     this.address,
@@ -16,6 +17,7 @@ class SupplierEntity extends Equatable {
   });
 
   final int? id;
+  final int siteId;
   final String denomination;
   final String type;
   final String? address;
@@ -29,6 +31,7 @@ class SupplierEntity extends Equatable {
 
   SupplierEntity copyWith({
     int? id,
+    int? siteId,
     String? denomination,
     String? type,
     String? address,
@@ -42,6 +45,7 @@ class SupplierEntity extends Equatable {
   }) {
     return SupplierEntity(
       id: id ?? this.id,
+      siteId: siteId ?? this.siteId,
       denomination: denomination ?? this.denomination,
       type: type ?? this.type,
       address: address ?? this.address,
@@ -58,6 +62,7 @@ class SupplierEntity extends Equatable {
   @override
   List<Object?> get props => [
         id,
+        siteId,
         denomination,
         type,
         address,

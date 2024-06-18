@@ -7,4 +7,11 @@ sealed class ProductionsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class FetchProductionsEvent extends ProductionsEvent {}
+final class FetchProductionsEvent extends ProductionsEvent {
+  const FetchProductionsEvent({required this.siteId});
+
+  final int siteId;
+
+  @override
+  List<Object> get props => [siteId];
+}

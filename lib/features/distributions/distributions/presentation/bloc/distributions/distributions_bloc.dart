@@ -27,6 +27,8 @@ class DistributionsBloc extends Bloc<DistributionsEvent, DistributionsState> {
         emit(DistributionsFetchingFailedState(message: failure.message));
       },
       (distributions) {
+        distributions.retainWhere((element) => element.siteId == event.siteId);
+
         emit(
           DistributionsFetchingDoneState(distributions: distributions),
         );

@@ -35,10 +35,11 @@ class ProductsRepositoryImpl implements ProductsRepository {
 
   @override
   ResultFuture<ProductModel> addProduct(
-      {required ProductEntity product}) async {
+      {required ProductEntity product, required int siteId,}) async {
     try {
       final httpResponse = await _dataSource.addProduct(
         body: {
+          'siteId': siteId,
           'designation': product.designation,
           'description': product.description,
           'width': product.width,
